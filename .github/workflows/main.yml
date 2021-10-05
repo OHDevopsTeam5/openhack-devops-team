@@ -1,26 +1,33 @@
-name: .NET
+name: Deploy POI API
 
 on:
   push:
     branches:
-     - main
+      - main
+  pull_request:
+    branches:
+      - '*'
+
+env:
+  DOTNET_VERSION: '3.1'           # set this to the dot net version to use
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    steps:
 
-  steps:
-  - uses: actions/checkout@v2
-  - name: Setup .NET
-    uses: actions/setup-dotnet@v1
-    with:
-      dotnet-version: 5.0.x
-
-  - name: Restore dependencies
-    run: dotnet restore
-
-  - name: Build
-    run: dotnet build --no-restore
-
-  - name: Test
-    run: dotnet test --no-build --verbosity normal
+      # Checkout the repo
+      - uses: actions/checkout@master
+      
+      # Setup .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
+      
+      # Run dotnet build and publish
+      - name: dotnet build and test
+        run: |
+          dotnet restore
+          dotnet build .
+          dotnet test .
