@@ -40,5 +40,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          filename: '.github/ISSUE_TEMPLATE.md'
+          title: Build number fail ${{ github.run_number }}
+          body: Build id ${{ github.run_number }}
           assignees: ${{github.repository_owner}}
