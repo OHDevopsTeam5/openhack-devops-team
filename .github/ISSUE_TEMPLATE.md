@@ -1,6 +1,6 @@
 ---
-title: Build number fail $github.run_number
-assignees: $github.repository_owner
+title: Build number fail #{github.run_number}
+assignees: #{github.repository_owner}
 labels: bug
 ---
 Someone just pushed, oh no! Here's who did it: {{ payload.sender.login }}.
