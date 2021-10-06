@@ -32,6 +32,8 @@ jobs:
           dotnet restore
           dotnet build .
           dotnet test .
+    
+      - name: Creating issue
         if: ${{ failure() }}
         - uses: JasonEtco/create-an-issue@v2
         env:
