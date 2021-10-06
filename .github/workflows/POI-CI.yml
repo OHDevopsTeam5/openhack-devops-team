@@ -43,3 +43,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           filename: .github/ISSUE_TEMPLATE.md
+      
+      requests:
+      - name: Get single comment
+        url: "https://openhacktch9q931poi.azurewebsites.net/api/healthcheck/poi"
+        method: get
+        expect:
+          status: 'Healthy'  
+          values:
+            comment: This is my comment! # the JSON response `comment` field must match this value
+            date_posted:
+              exists: true # assertion rules can be used instead of a simple string value
+            num_replies:
+              gt: 0 # assert that num_replies is greater than 0
