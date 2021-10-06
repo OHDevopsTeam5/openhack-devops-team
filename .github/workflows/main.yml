@@ -28,7 +28,7 @@ jobs:
       # Run dotnet build and publish
       - name: dotnet build and test
         run: |
-          cd apis/poi
+          cd apis/poi/tests/IntegrationTests
           dotnet restore
           dotnet build .
           dotnet test .
