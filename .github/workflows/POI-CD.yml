@@ -14,6 +14,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file apis/poi/web/Dockerfile --tag my-image-name:$(date +%s)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver: docker # defaults to "docker-containerized"
+
+      - name: Build business-layer container
+        uses: docker/build-push-action@v2
+        with:
+          # using "load: true" forces the docker driver
+          # not necessary here, because we set it before
+          #load: true
+          tags: my-project/base:latest
+          context: business
+          file: apis/poi/Dockerfile
+
+      - name: Build service
+        uses: docker/build-push-action@v2
+        with:
+          # using "push: true" will lead to error:
+          # Error: buildx call failed with: auto-push is currently not implemented for docker driver
+          # so you will have to follow the solution outlined here:
+          # https://github.com/docker/build-push-action/issues/100#issuecomment-715352826
+          # and push the image manually following the build
+          #push: true
+          tags: my-ecr-repo/service:latest
+          context: service
+          file: service/Dockerfile
+
+      # list all images, you will see my-ecr-repo/service and my-project/base
+      - name: Look up images
+        run: docker image ls
+
+      # push the image manually, see above comment
+      - name: Push image
+        run: docker push my-ecr-repo/service:latest
