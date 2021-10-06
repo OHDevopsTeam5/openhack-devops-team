@@ -1,3 +1,11 @@
+---
+title: Build number fail ${{ github.run_number }}
+assignees: ${{github.repository_owner}}
+labels: bug
+---
+Someone just pushed, oh no! Here's who did it: {{ payload.sender.login }}.
+Build id ${{ github.run_number }}
+
 <!--
 IF SUFFICIENT INFORMATION IS NOT PROVIDED VIA THE FOLLOWING TEMPLATE THE ISSUE MIGHT BE CLOSED WITHOUT FURTHER CONSIDERATION OR INVESTIGATION
 -->

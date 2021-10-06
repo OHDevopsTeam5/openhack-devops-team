@@ -40,4 +40,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          assignees: ${{github.repository_owner}}
+          filename: .github/ISSUE_TEMPLATE.md
