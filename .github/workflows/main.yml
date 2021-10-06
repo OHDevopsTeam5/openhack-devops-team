@@ -40,7 +40,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          title: Build number fail ${{ github.run_number }}
           assignees: ${{github.repository_owner}}
-          name: Tracking issue
-          about: Use this template for tracking new features.
