@@ -8,6 +8,8 @@ name: CD API POI
 on:
   push:
     branches: ['main']
+    tags:
+      - 'v*'
 
 env:
   REGISTRY: ghcr.io
@@ -42,5 +44,5 @@ jobs:
         with:
           context: ./apis/poi/web/
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/apis/poi:${{ github.run_number }}
+          tags: ${{ steps.meta.outputs.labels }}
           labels: ${{ steps.meta.outputs.labels }}
