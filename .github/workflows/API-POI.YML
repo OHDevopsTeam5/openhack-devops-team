@@ -1,17 +1,16 @@
-name: CI API POI
+name: CHECKING API
 
 on:
   push:
     branches:
       - main
-#    paths: 
-#      - apis/poi/**
+
   pull_request:
     branches:
       - '*'
 
 jobs:
-  build-and-test:
+  testing-api:
     runs-on: ubuntu-latest
     steps:
       requests:
