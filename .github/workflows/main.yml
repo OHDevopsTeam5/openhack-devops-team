@@ -10,6 +10,7 @@ on:
 
 env:
   DOTNET_VERSION: '3.1'           # set this to the dot net version to use
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build-and-test:
@@ -35,9 +36,7 @@ jobs:
     
       - name: Creating issue
         if: ${{ failure() }}
-        - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: JasonEtco/create-an-issue@v2
         id: create-issue
         - run: 'echo Created issue number ${{ steps.create-issue.outputs.number }}'
         - run: 'echo Created ${{ steps.create-issue.outputs.url }}'
