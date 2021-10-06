@@ -11,15 +11,13 @@ on:
 jobs:
   testing-api:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Get single comment
+    - name: Make Request
+      id: myRequest
+      uses: fjogeleit/http-request-action@master
+      with:
         url: "https://openhacktch9q931poi.azurewebsites.net/api/healthcheck/poi"
-        method: get
-        expect:
-          status: 'Healthy'  
-          values:
-            comment: Healthy # the JSON response `comment` field must match this value
-            date_posted:
-              exists: true # assertion rules can be used instead of a simple string value
-            num_replies:
-              gt: 0 # assert that num_replies is greater than 0
+    - name: Show Response
+      run: echo ${{ steps.myRequest.outputs.response }}
+  
