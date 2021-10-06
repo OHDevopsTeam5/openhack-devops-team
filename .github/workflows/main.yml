@@ -36,10 +36,10 @@ jobs:
     
       - name: Creating issue
         if: ${{ failure() }}
-        - uses: actions/checkout@v2
-        - uses: JasonEtco/create-an-issue@v2
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            filename: .github/ISSUE_TEMPLATE.md
-            assignees: ${{github.repository_owner}}
+        uses: actions/checkout@v2
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/ISSUE_TEMPLATE.md
+          assignees: ${{github.repository_owner}}
