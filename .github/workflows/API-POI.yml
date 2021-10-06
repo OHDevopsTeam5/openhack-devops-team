@@ -12,7 +12,6 @@ jobs:
   testing-api:
     runs-on: ubuntu-latest
     steps:
-      requests:
       - name: Get single comment
         url: "https://openhacktch9q931poi.azurewebsites.net/api/healthcheck/poi"
         method: get
