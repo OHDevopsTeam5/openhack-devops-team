@@ -8,6 +8,8 @@ name: CD API POI
 on:
   push:
     branches: ['main']
+    paths: 
+      - apis/poi/**
     tags:
       - 'v*'
 
